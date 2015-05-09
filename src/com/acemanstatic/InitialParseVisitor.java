@@ -5,6 +5,7 @@ import com.aceman.SenatorParser;
 import com.acemanstatic.expressions.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -23,7 +24,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
 
 
 
-    public expr commands = new RootExpr();
+    public expr commands = new RootExpr(Collections.<expr>emptyList(), null);
 
 
 
@@ -53,8 +54,8 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
     @Override
     public SenatorASTContainer visitVar( SenatorParser.VarContext ctx) {
         System.out.println("Visit for var eval : " + ctx.getText() + " => " + ctx.ID());
-        String varName = ctx.getChild(1).getText();
-        expr command = new expr("Print me", ctx.getStart());
+        expr command = new DisplayHouseExpression("Print me");
+        command.setContext(ctx.getStart());
         return command;
     }
 
@@ -63,19 +64,20 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         visit(ctx.var());
         System.out.println("Visit for index start by Var: " + ctx.getText() + " => " + ctx.var().ID());
 
-        expr command = new expr("Print me", ctx.getStart());
-        return command;
+        expr command = new DisplayHouseExpression("Print me");
+        command.setContext(ctx.getStart());
+        return(command);
     }
 
     @Override
     public SenatorASTContainer visitLoop(SenatorParser.LoopContext ctx){
-        System.out.println("Visiting Loop..." + ctx.getStart() + "..." + ctx.getChildCount() );
+        System.out.println("Visiting Loop..." + ctx.getStart() + "..." + ctx.getChildCount());
 
         LinkedList<expr> commands = new LinkedList<>();
         visit(ctx.foridxitem(0));
         visit(ctx.foridxitem(1));
 
-
+        ForExpression command = new ForExpression(1, 2, commands);
 
 
        // System.out.println(ctx.foridxstart().getText() + "::" +  (ctx.foridxstart().getRuleIndex() == SenatorParser.RULE_foridxstart));
@@ -87,7 +89,8 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         }
         */
         System.out.println("Done..Visiting Loop..." + ctx.getStart());
-        return new expr(commands, ctx.getStart());
+        command.setContext(ctx.getStart());
+        return command;
     }
 
     @Override
@@ -96,7 +99,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         for(int i = 0;i < ctx.getChildCount();i++){
             commands.add((expr)visit(ctx.getChild(i)));
         }
-        return new expr(commands, ctx.getStart());
+        return new RootExpr(commands, ctx.getStart());
     }
     @Override
     public SenatorASTContainer visitTopLevelRule( SenatorParser.TopLevelRuleContext ctx){
