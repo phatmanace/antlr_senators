@@ -39,6 +39,13 @@ public class SenatorBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitProgstmt(@NotNull SenatorParser.ProgstmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -81,7 +88,7 @@ public class SenatorBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx) { return visitChildren(ctx); }
+	@Override public T visitForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

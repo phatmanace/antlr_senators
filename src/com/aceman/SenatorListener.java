@@ -41,6 +41,16 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SenatorParser#progstmt}.
 	 * @param ctx the parse tree
 	 */
@@ -103,17 +113,17 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitLoop(@NotNull SenatorParser.LoopContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ForIndexNum}
+	 * Enter a parse tree produced by the {@code ForIndexNumÌ}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
 	 * @param ctx the parse tree
 	 */
-	void enterForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx);
+	void enterForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ForIndexNum}
+	 * Exit a parse tree produced by the {@code ForIndexNumÌ}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
 	 * @param ctx the parse tree
 	 */
-	void exitForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx);
+	void exitForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ForIndexVar}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.

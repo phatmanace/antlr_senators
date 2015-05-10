@@ -31,6 +31,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SenatorParser#progstmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -68,12 +74,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLoop(@NotNull SenatorParser.LoopContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ForIndexNum}
+	 * Visit a parse tree produced by the {@code ForIndexNumÌ}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx);
+	T visitForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ForIndexVar}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
