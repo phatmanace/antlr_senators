@@ -9,9 +9,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-/**
- * Created by phatmanace on 14/04/2015.
- */
 public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer> {
 
     SenatorASTContainer shiz = new ProgramContainer();
@@ -42,14 +39,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         return command;
     }
 
-    @Override
-    public SenatorASTContainer visitForIndexNum(SenatorParser.ForIndexNumContext ctx){
-        System.out.println("Visit for index start by number" + ctx.getText());
-        expr command = new ConstantExpression(ctx.getText(), ExprType.STRING);
-        command.setContext(ctx.getStart());
 
-        return command;
-    }
 
     @Override
     public SenatorASTContainer visitVar( SenatorParser.VarContext ctx) {
