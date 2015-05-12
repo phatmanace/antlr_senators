@@ -19,6 +19,12 @@ public class RootExpr extends expr {
 
     @Override
     public Result exec(int depth) {
+        System.out.print(getCommands());
+
+        List<expr> children = getCommands();
+        for(expr c: children){
+            System.out.println(">>> " + c.getClass().getName());
+        }
 
         return new StringResult("Foo");
     }

@@ -6,12 +6,14 @@ import org.antlr.v4.runtime.Token;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by phatmanace on 29/04/2015.
  */
 public abstract  class expr extends SenatorASTContainer {
 
+    Logger logger = Logger.getLogger(expr.class.getName());
     public Token getContext() {
         return context;
     }
@@ -42,10 +44,15 @@ public abstract  class expr extends SenatorASTContainer {
         this.fromtoken = fromtoken;
     }
     public void add(expr cmd){
+        logger.info(String.format("Adding command [%s] to class", cmd.getClass().getName()));
         this.commands.add(cmd);
     }
     public void addMany(List<expr> cmd){
         this.commands.addAll(cmd);
     }
     public abstract Result exec(int depth);
+
+    public List<expr> getCommands(){
+        return commands;
+    }
 }

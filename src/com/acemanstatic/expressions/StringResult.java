@@ -16,4 +16,8 @@ public class StringResult extends Result{
     public String getStringResult() {
         return val;
     }
+
+    public String toString(){
+        return String.format("{SR:%s}", val);
+    }
 }
