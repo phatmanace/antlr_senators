@@ -41,16 +41,6 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SenatorParser#programexpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SenatorParser#programexpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SenatorParser#progstmt}.
 	 * @param ctx the parse tree
 	 */
@@ -137,6 +127,16 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitForIndexVar(@NotNull SenatorParser.ForIndexVarContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SenatorParser#var}.
 	 * @param ctx the parse tree
 	 */
@@ -166,16 +166,6 @@ public interface SenatorListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLastname(@NotNull SenatorParser.LastnameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SenatorParser#endofstatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterEndofstatement(@NotNull SenatorParser.EndofstatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SenatorParser#endofstatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitEndofstatement(@NotNull SenatorParser.EndofstatementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code DemocratRule}
 	 * labeled alternative in {@link SenatorParser#party}.

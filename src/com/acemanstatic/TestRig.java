@@ -7,9 +7,35 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileInputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.*;
 
 public class TestRig {
+
+
+
     public static void main(String[] args) throws Exception {
+
+
+
+        Logger logger = Logger.getLogger(TestRig.class.getName());
+
+        for(Handler iHandler:logger.getParent().getHandlers())
+        {
+           // logger.getParent().removeHandler(iHandler);
+        }
+
+        logger.setUseParentHandlers(false);
+
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        logger.addHandler(consoleHandler);
+
+        BriefFormatter formatter = new BriefFormatter();
+        ConsoleHandler handler = new ConsoleHandler();
+        handler.setFormatter(formatter);
+
 
         ANTLRInputStream input = new ANTLRInputStream(new FileInputStream("/var/tmp/senator.txt"));
         SenatorLexer lexer = new SenatorLexer(input);
@@ -37,9 +63,21 @@ public class TestRig {
 
 
         Object returned = visitor.visit(tree);
-        visitor.getProgram().exec(0);
+        System.out.println("Executing program");
+        System.out.println(visitor.getProgram().exec(0));
 
         System.out.println("done: " + returned);
 
+    }
+}
+
+class BriefFormatter extends Formatter
+{
+    public BriefFormatter() { super(); }
+
+    @Override
+    public String format(final LogRecord record)
+    {
+        return record.getMessage();
     }
 }

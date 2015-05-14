@@ -1,12 +1,12 @@
 grammar Senator;
 
-stmt : ((senatordfn|progstmt) endofstatement)+ #TopLevelRule;
+stmt : ((senatordfn|progstmt) ';')+ #TopLevelRule;
 
 senatordfn: senatorname '('party')';
 
 senatorname: firstname lastname;
 
-programexpression: progstmt endofstatement;
+
 progstmt: (assignvar|deletevar|printhouse|displayhouse|loop);
 assignvar: '$'ID+'="'(ID+|NUM+)'"';
 deletevar: '~delete' ID;
@@ -17,17 +17,19 @@ foridxitem: NUM     #ForIndexNumÌ
               |
             var     #ForIndexVar;
 
-
+programexpression: progstmt ';';
 
 var: '$'ID;
 
 firstname: ID;
 lastname: ID;
-endofstatement: ';';
+
 
 party: 'D' # DemocratRule
        |
        'R' # ReblicanRule;
+
+ENDOFSTATEMENT: ';' {skip();};
 
 COMMENT: '/*' .*? '*/' {skip();};
 

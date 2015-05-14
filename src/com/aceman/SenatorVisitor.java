@@ -31,12 +31,6 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SenatorParser#programexpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SenatorParser#progstmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -88,6 +82,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForIndexVar(@NotNull SenatorParser.ForIndexVarContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SenatorParser#var}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -105,12 +105,6 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLastname(@NotNull SenatorParser.LastnameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SenatorParser#endofstatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEndofstatement(@NotNull SenatorParser.EndofstatementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code DemocratRule}
 	 * labeled alternative in {@link SenatorParser#party}.

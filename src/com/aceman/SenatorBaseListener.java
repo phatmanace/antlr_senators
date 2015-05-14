@@ -53,18 +53,6 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterProgstmt(@NotNull SenatorParser.ProgstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -161,6 +149,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVar(@NotNull SenatorParser.VarContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -192,18 +192,6 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLastname(@NotNull SenatorParser.LastnameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterEndofstatement(@NotNull SenatorParser.EndofstatementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEndofstatement(@NotNull SenatorParser.EndofstatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
