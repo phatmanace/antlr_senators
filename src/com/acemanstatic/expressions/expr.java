@@ -44,8 +44,12 @@ public abstract  class expr extends SenatorASTContainer {
         this.fromtoken = fromtoken;
     }
     public void add(expr cmd){
-        logger.info(String.format("Adding command [%s] to class", cmd.getClass().getName()));
-        this.commands.add(cmd);
+        if(cmd.getCommands().size() > 0) {
+            logger.info(String.format("Adding command [%s] to class", cmd.getClass().getName()));
+            this.commands.add(cmd);
+        }else{
+            logger.warning("Pruning empty command... " + cmd.toString());
+        }
     }
     public void addMany(List<expr> cmd){
         this.commands.addAll(cmd);

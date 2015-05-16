@@ -16,4 +16,9 @@ public class DisplayHouseExpression extends expr {
         logger.info("I'm displaying the house");
         return new StringResult("I'm the house");
     }
+
+    @Override
+    public String toString(){
+        return "{Display_house_expression}";
+    }
 }

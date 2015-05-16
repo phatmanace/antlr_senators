@@ -19,15 +19,13 @@ public class ProgramExpression extends expr {
 
     @Override
     public Result exec(int depth) {
+        /*
         logger.info("Exec'ing at depth " + depth);
         logger.info(getCommands().toString());
-
+        */
         List<expr> children = getCommands();
         for(expr c: children){
-            for(int i = 0; i <  depth;i++){
-                logger.info("  ");
-            }
-            logger.info(">>> " + c.getClass().getName());
+            c.exec(depth + 1);
         }
 
         return new StringResult("Foo");

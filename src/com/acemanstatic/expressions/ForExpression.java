@@ -13,8 +13,8 @@ public class ForExpression extends expr {
     int stop = 0;
 
     public ForExpression(int start, int stop, List<expr> commands){
-        this.start = 0;
-        this.stop = 0;
+        this.start = start;
+        this.stop = stop;
         this.addMany(commands);
     }
 
@@ -22,12 +22,17 @@ public class ForExpression extends expr {
 
     @Override
     public Result exec(int depth) {
-
+        logger.info(String.format("For statement Executing(%d,%d)", start, stop));
         for(int x = start; x < stop ;x++){
             for(expr c:commands){
                 c.exec(depth);
             }
         }
         return new NoOpResult();
+    }
+
+    @Override
+    public String toString(){
+        return String.format("_For Statement - %d commands", getCommands().size());
     }
 }

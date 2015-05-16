@@ -3,6 +3,7 @@ package com.acemanstatic;
 import com.aceman.SenatorBaseVisitor;
 import com.aceman.SenatorParser;
 import com.acemanstatic.expressions.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -26,8 +27,20 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
 
 
 
+    @Override
+    public SenatorASTContainer visitProgramexpression(SenatorParser.ProgramexpressionContext ctx) {
+        logger.info("Visiting Program Expression");
+        int cc = ctx.getChildCount();
 
+        return visit(ctx.getChild(0));
+        /*
+        for(int i = 2;i < cc;i++){
+            logger.info("Visiting Program Child Expression ");
+        }
+        return new ProgramExpression(Collections.<expr>emptyList(),ctx.getStart());
+        */
 
+    }
 
 
     @Override
@@ -60,7 +73,17 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         visit(ctx.var());
         logger.info("Visit for index start by Var: " + ctx.getText() + " => " + ctx.var().ID());
 
-        expr command = new DisplayHouseExpression("Print me");
+        expr command = new VarExpression("6", ExprType.INTEGER);
+        command.setContext(ctx.getStart());
+        return(command);
+    }
+
+    @Override
+    public SenatorASTContainer visitForIndexNum(SenatorParser.ForIndexNumContext ctx){
+
+        logger.info("Visit for index start by Num: " + ctx.getText() + "");
+
+        expr command = new ConstantExpression(ctx.getText(), ExprType.INTEGER);
         command.setContext(ctx.getStart());
         return(command);
     }
@@ -70,8 +93,8 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         logger.info("Visiting Loop..." + ctx.getStart() + "..." + ctx.getChildCount());
 
         LinkedList<expr> commands = new LinkedList<>();
-        visit(ctx.foridxitem(0));
-        visit(ctx.foridxitem(1));
+        logger.info(String.format("Start: %s", visit(ctx.foridxitem(0))));
+        logger.info(String.format("Stop : %s", visit(ctx.foridxitem(1))));
 
         ForExpression command = new ForExpression(1, 5, commands);
 

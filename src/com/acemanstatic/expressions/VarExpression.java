@@ -3,12 +3,12 @@ package com.acemanstatic.expressions;
 /**
  * Created by phatmanace on 08/05/2015.
  */
-public class ConstantExpression extends expr {
+public class VarExpression extends expr {
 
     String val;
     Result result = new NoOpResult();
 
-    public ConstantExpression(String val, ExprType _type){
+    public VarExpression(String val, ExprType _type){
         this.val = val;
         switch (_type){
 
@@ -30,6 +30,6 @@ public class ConstantExpression extends expr {
 
     @Override
     public String toString(){
-        return String.format("{Constant Expression:%s}", result.getResult());
+        return "{Var Expression}";
     }
 }

@@ -68,12 +68,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLoop(@NotNull SenatorParser.LoopContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ForIndexNumÌ}
+	 * Visit a parse tree produced by the {@code ForIndexNum}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx);
+	T visitForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ForIndexVar}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.

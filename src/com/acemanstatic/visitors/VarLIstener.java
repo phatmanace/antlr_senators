@@ -2,7 +2,7 @@ package com.acemanstatic.visitors;
 
 import com.aceman.SenatorBaseListener;
 import com.aceman.SenatorParser;
-import com.acemanstatic.Var;
+import com.acemanstatic.Variables.Var;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.ArrayList;

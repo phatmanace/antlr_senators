@@ -708,6 +708,23 @@ public class SenatorParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
+	public static class ForIndexNumContext extends ForidxitemContext {
+		public TerminalNode NUM() { return getToken(SenatorParser.NUM, 0); }
+		public ForIndexNumContext(ForidxitemContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SenatorListener ) ((SenatorListener)listener).enterForIndexNum(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SenatorListener ) ((SenatorListener)listener).exitForIndexNum(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SenatorVisitor ) return ((SenatorVisitor<? extends T>)visitor).visitForIndexNum(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class ForIndexVarContext extends ForidxitemContext {
 		public VarContext var() {
 			return getRuleContext(VarContext.class,0);
@@ -727,23 +744,6 @@ public class SenatorParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class ForIndexNumÌContext extends ForidxitemContext {
-		public TerminalNode NUM() { return getToken(SenatorParser.NUM, 0); }
-		public ForIndexNumÌContext(ForidxitemContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SenatorListener ) ((SenatorListener)listener).enterForIndexNumÌ(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SenatorListener ) ((SenatorListener)listener).exitForIndexNumÌ(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SenatorVisitor ) return ((SenatorVisitor<? extends T>)visitor).visitForIndexNumÌ(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 
 	public final ForidxitemContext foridxitem() throws RecognitionException {
 		ForidxitemContext _localctx = new ForidxitemContext(_ctx, getState());
@@ -752,7 +752,7 @@ public class SenatorParser extends Parser {
 			setState(97);
 			switch (_input.LA(1)) {
 			case NUM:
-				_localctx = new ForIndexNumÌContext(_localctx);
+				_localctx = new ForIndexNumContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(95); 

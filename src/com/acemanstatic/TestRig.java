@@ -63,10 +63,9 @@ public class TestRig {
 
 
         Object returned = visitor.visit(tree);
-        System.out.println("Executing program");
-        System.out.println(visitor.getProgram().exec(0));
-
-        System.out.println("done: " + returned);
+        logger.info("Executing program");
+        logger.info(visitor.getProgram().exec(0).toString());
+        logger.info("done: " + returned);
 
     }
 }

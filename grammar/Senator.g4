@@ -1,23 +1,23 @@
 grammar Senator;
 
-stmt : ((senatordfn|progstmt) ';')+ #TopLevelRule;
+stmt : ((senatordfn|progstmt) ';'WS?)+ #TopLevelRule;
 
 senatordfn: senatorname '('party')';
 
 senatorname: firstname lastname;
 
+programexpression: progstmt ';';
 
-progstmt: (assignvar|deletevar|printhouse|displayhouse|loop);
+progstmt: (assignvar|deletevar|printhouse|displayhouse|loop)WS?;
 assignvar: '$'ID+'="'(ID+|NUM+)'"';
 deletevar: '~delete' ID;
 printhouse: '~printhouse';
 displayhouse: '~displayhouse'  #DisplayMyHouse;
-loop: 'for(' foridxitem ',' foridxitem  '){' (programexpression)+ '}';
-foridxitem: NUM     #ForIndexNumÌ
+loop: 'for(' foridxitem ',' foridxitem  '){' WS? (programexpression)+ WS?'}';
+foridxitem: NUM     #ForIndexNum
               |
             var     #ForIndexVar;
 
-programexpression: progstmt ';';
 
 var: '$'ID;
 

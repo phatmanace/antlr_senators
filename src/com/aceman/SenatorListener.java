@@ -103,17 +103,17 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitLoop(@NotNull SenatorParser.LoopContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ForIndexNumÌ}
+	 * Enter a parse tree produced by the {@code ForIndexNum}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
 	 * @param ctx the parse tree
 	 */
-	void enterForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx);
+	void enterForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ForIndexNumÌ}
+	 * Exit a parse tree produced by the {@code ForIndexNum}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.
 	 * @param ctx the parse tree
 	 */
-	void exitForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx);
+	void exitForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code ForIndexVar}
 	 * labeled alternative in {@link SenatorParser#foridxitem}.

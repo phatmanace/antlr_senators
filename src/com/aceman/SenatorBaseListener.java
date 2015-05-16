@@ -125,13 +125,13 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx) { }
+	@Override public void enterForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForIndexNumÌ(@NotNull SenatorParser.ForIndexNumÌContext ctx) { }
+	@Override public void exitForIndexNum(@NotNull SenatorParser.ForIndexNumContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
