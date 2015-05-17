@@ -3,7 +3,6 @@ package com.acemanstatic;
 import com.aceman.SenatorBaseVisitor;
 import com.aceman.SenatorParser;
 import com.acemanstatic.expressions.*;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -28,6 +27,12 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
 
 
     @Override
+    public SenatorASTContainer visitSwait(SenatorParser.SwaitContext ctx) {
+        return new WaitExpression(new ConstantExpression(ctx.getChild(1).getText(), ExprType.INTEGER));
+    }
+
+
+        @Override
     public SenatorASTContainer visitProgramexpression(SenatorParser.ProgramexpressionContext ctx) {
         logger.info("Visiting Program Expression");
         int cc = ctx.getChildCount();
@@ -45,7 +50,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
 
     @Override
     public SenatorASTContainer visitDisplayMyHouse(SenatorParser.DisplayMyHouseContext ctx){
-        expr command = new DisplayHouseExpression("Display me");
+        expr command = new DisplayHouseExpression(_senators);
         command.setContext(ctx.getStart());
         return command;
     }
@@ -53,7 +58,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
     @Override
     public SenatorASTContainer visitPrinthouse(SenatorParser.PrinthouseContext ctx){
         logger.info("(V)Print house");
-        expr command = new DisplayHouseExpression("Print me");
+        expr command = new DisplayHouseExpression(_senators);
         command.setContext(ctx.getStart());
         return command;
     }
@@ -63,7 +68,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
     @Override
     public SenatorASTContainer visitVar( SenatorParser.VarContext ctx) {
         logger.info("Visit for var eval : " + ctx.getText() + " => " + ctx.ID());
-        expr command = new DisplayHouseExpression("Print me");
+        expr command = new DisplayHouseExpression(_senators);
         command.setContext(ctx.getStart());
         return command;
     }
@@ -81,22 +86,26 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
     @Override
     public SenatorASTContainer visitForIndexNum(SenatorParser.ForIndexNumContext ctx){
 
-        logger.info("Visit for index start by Num: " + ctx.getText() + "");
+      //  logger.info("Visit for index start by Num: " + ctx.getText() + "");
 
         expr command = new ConstantExpression(ctx.getText(), ExprType.INTEGER);
         command.setContext(ctx.getStart());
         return(command);
     }
 
+
+
     @Override
     public SenatorASTContainer visitLoop(SenatorParser.LoopContext ctx){
         logger.info("Visiting Loop..." + ctx.getStart() + "..." + ctx.getChildCount());
 
         LinkedList<expr> commands = new LinkedList<>();
-        logger.info(String.format("Start: %s", visit(ctx.foridxitem(0))));
-        logger.info(String.format("Stop : %s", visit(ctx.foridxitem(1))));
+        ConstantExpression loopStart = (ConstantExpression)visit(ctx.foridxitem(0));
+        ConstantExpression loopStop  = (ConstantExpression)visit(ctx.foridxitem(1));
+        logger.info(String.format("Start: %s", loopStart));
+        logger.info(String.format("Stop : %s", loopStop));
 
-        ForExpression command = new ForExpression(1, 5, commands);
+        ForExpression command = new ForExpression(loopStart, loopStop, commands);
 
 
        // System.out.println(ctx.foridxstart().getText() + "::" +  (ctx.foridxstart().getRuleIndex() == SenatorParser.RULE_foridxstart));
@@ -137,10 +146,11 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         logger.info("Visiting top level statement......");
 
         for(int i = 0;i < ctx.getChildCount();i++){
+            ParseTree child = ctx.getChild(i);
             if(ctx.getChild(i) instanceof SenatorParser.SenatordfnContext){
                 SenatorParser.SenatordfnContext senator = (SenatorParser.SenatordfnContext)ctx.getChild(i);
                 SenatorASTContainer con = visit(senator);
-                logger.info(String.format("ss:>%d", _senators.size()));
+                logger.info(String.format("Senator Def:>%d", _senators.size()));
                 if(_senators.contains(con.getSenator())){
                     throw new RuntimeException(String.format("You already have defined Senator(%s)", con.getSenator()));
                 }
@@ -150,8 +160,8 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
                 _senPartyMap.put(con.getSenator().getFullName(), con.getSenator().getPartyType());
                 _senators.add(con.getSenator());
             }
-            if(ctx.getChild(i) instanceof SenatorParser.ProgstmtContext){
-                logger.info("Class Name is " + ((SenatorParser.ProgstmtContext) ctx.getChild(i)).getClass().getName());
+            if(ctx.getChild(i) instanceof SenatorParser.ProgramexpressionContext){
+                logger.info("Class Name is " + ((SenatorParser.ProgramexpressionContext) ctx.getChild(i)).getClass().getName());
                 expr command = (expr) visit(ctx.getChild(i));
                 _rootcommand.add(command);
             }

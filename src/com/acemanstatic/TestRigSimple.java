@@ -2,15 +2,19 @@ package com.acemanstatic;
 
 import com.aceman.SenatorLexer;
 import com.aceman.SenatorParser;
+import com.aceman.SimpleVars.SimpleVarLexer;
+import com.aceman.SimpleVars.SimpleVarParser;
 import com.acemanstatic.visitors.VarListener;
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Logger;
 
-public class TestRig {
+public class TestRigSimple {
 
 
 
@@ -18,9 +22,9 @@ public class TestRig {
 
 
 
-        Logger logger = Logger.getLogger(TestRig.class.getName());
+        Logger logger = Logger.getLogger(TestRigSimple.class.getName());
 
-        String filename = "/var/tmp/senator.txt";
+        String filename = "/var/tmp/vars.txt";
 
         File file = new File(filename);
         FileInputStream fis = new FileInputStream(file);
@@ -45,18 +49,15 @@ public class TestRig {
 
 
         ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(filename));
-        SenatorLexer lexer = new SenatorLexer(input);
+        SimpleVarLexer lexer = new SimpleVarLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        SenatorParser parser = new SenatorParser(tokens);
+        SimpleVarParser parser = new SimpleVarParser(tokens);
        // parser.setBuildParseTree(true);
 
 
         VarListener vl =new VarListener();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(vl, parser.stmt());
-
-        logger.info(String.format("Variable parsing completed ok: %d variables found ",  vl.getCount()));
-
 
         if(vl.areErrors()){
             System.out.println("Compilation Errors");
@@ -66,6 +67,8 @@ public class TestRig {
             System.out.println("Not proceeding further");
             System.exit(-1);
         }
+        logger.info("Variable parsing completed ok");
+        /*
         parser.reset();
         SenatorParser.StmtContext tree  = parser.stmt();
         InitialParseVisitor visitor = new InitialParseVisitor();
@@ -76,17 +79,7 @@ public class TestRig {
         logger.info("Executing program");
         logger.info(visitor.getProgram().exec(0).toString());
         logger.info("done: " + returned);
-
+    */
     }
 }
 
-class BriefFormatter extends Formatter
-{
-    public BriefFormatter() { super(); }
-
-    @Override
-    public String format(final LogRecord record)
-    {
-        return record.getMessage();
-    }
-}
