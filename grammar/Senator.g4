@@ -1,19 +1,22 @@
 grammar Senator;
 
-stmt : ((senatordfn|progstmt) ';'WS?)+ #TopLevelRule;
+stmt : ((programexpression) WS?)+ #TopLevelRule;
 
-senatordfn: senatorname '('party')';
 
-senatorname: firstname lastname;
 
-programexpression: progstmt ';';
 
-progstmt: (assignvar|deletevar|printhouse|displayhouse|loop)WS?;
-assignvar: '$'ID+'="'(ID+|NUM+)'"';
+
+programexpression: progstmt ENDOFSTATEMENT;
+
+progstmt: (assignvar|deletevar|printhouse|displayhouse|loop|swait|senatordfn) WS?;
+senatordfn: '->("' senatorname WS? '('party')")';
+senatorname: firstname WS? lastname;
+assignvar: '$'ID'="'(ID+|NUM+)'"';
+swait: '~wait(' NUM ')';
 deletevar: '~delete' ID;
 printhouse: '~printhouse';
 displayhouse: '~displayhouse'  #DisplayMyHouse;
-loop: 'for(' foridxitem ',' foridxitem  '){' WS? (programexpression)+ WS?'}';
+loop: 'for(' foridxitem ',' foridxitem  '){'(WS? programexpression WS?)+'}';
 foridxitem: NUM     #ForIndexNum
               |
             var     #ForIndexVar;
@@ -29,7 +32,7 @@ party: 'D' # DemocratRule
        |
        'R' # ReblicanRule;
 
-ENDOFSTATEMENT: ';' {skip();};
+ENDOFSTATEMENT: ';';
 
 COMMENT: '/*' .*? '*/' {skip();};
 
