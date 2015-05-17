@@ -31,6 +31,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SenatorParser#progstmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -42,6 +48,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAssignvar(@NotNull SenatorParser.AssignvarContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#swait}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSwait(@NotNull SenatorParser.SwaitContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SenatorParser#deletevar}.
 	 * @param ctx the parse tree
@@ -81,12 +93,6 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForIndexVar(@NotNull SenatorParser.ForIndexVarContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SenatorParser#programexpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SenatorParser#var}.
 	 * @param ctx the parse tree

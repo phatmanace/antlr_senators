@@ -41,6 +41,16 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SenatorParser#programexpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SenatorParser#progstmt}.
 	 * @param ctx the parse tree
 	 */
@@ -60,6 +70,16 @@ public interface SenatorListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAssignvar(@NotNull SenatorParser.AssignvarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SenatorParser#swait}.
+	 * @param ctx the parse tree
+	 */
+	void enterSwait(@NotNull SenatorParser.SwaitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SenatorParser#swait}.
+	 * @param ctx the parse tree
+	 */
+	void exitSwait(@NotNull SenatorParser.SwaitContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SenatorParser#deletevar}.
 	 * @param ctx the parse tree
@@ -126,16 +146,6 @@ public interface SenatorListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForIndexVar(@NotNull SenatorParser.ForIndexVarContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SenatorParser#programexpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SenatorParser#programexpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SenatorParser#var}.
 	 * @param ctx the parse tree

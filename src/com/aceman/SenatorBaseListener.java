@@ -53,6 +53,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgstmt(@NotNull SenatorParser.ProgstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -72,6 +84,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAssignvar(@NotNull SenatorParser.AssignvarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSwait(@NotNull SenatorParser.SwaitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSwait(@NotNull SenatorParser.SwaitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -144,18 +168,6 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitForIndexVar(@NotNull SenatorParser.ForIndexVarContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
