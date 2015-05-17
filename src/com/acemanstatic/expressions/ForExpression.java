@@ -9,10 +9,10 @@ public class ForExpression extends expr {
 
     String val;
     Result result = new NoOpResult();
-    int start = 0;
-    int stop = 0;
+    ConstantExpression start = ConstantExpression.zero();
+    ConstantExpression stop = ConstantExpression.zero();
 
-    public ForExpression(int start, int stop, List<expr> commands){
+    public ForExpression(ConstantExpression start, ConstantExpression stop, List<expr> commands){
         this.start = start;
         this.stop = stop;
         this.addMany(commands);
@@ -22,8 +22,8 @@ public class ForExpression extends expr {
 
     @Override
     public Result exec(int depth) {
-        logger.info(String.format("For statement Executing(%d,%d)", start, stop));
-        for(int x = start; x < stop ;x++){
+        logger.info(String.format("For statement Executing(%d,%d)", start.getIntValue(), stop.getIntValue()));
+        for(int x = start.getIntValue(); x < stop.getIntValue() ;x++){
             for(expr c:commands){
                 c.exec(depth);
             }

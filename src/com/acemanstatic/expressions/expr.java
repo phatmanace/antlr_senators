@@ -39,6 +39,9 @@ public abstract  class expr extends SenatorASTContainer {
         super();
         setCommand(name, fromtoken);
     }
+    public int getIntValue(){
+        throw new RuntimeException("Not Implemented at expr() level");
+    }
     public void setCommand(String command, Token fromtoken){
         this.command = command;
         this.fromtoken = fromtoken;
@@ -58,5 +61,16 @@ public abstract  class expr extends SenatorASTContainer {
 
     public List<expr> getCommands(){
         return commands;
+    }
+
+    public static String repeat(String s, int n) {
+        if(s == null) {
+            return null;
+        }
+        final StringBuilder sb = new StringBuilder(s.length() * n);
+        for(int i = 0; i < n; i++) {
+            sb.append(s);
+        }
+        return sb.toString();
     }
 }
