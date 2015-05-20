@@ -37,16 +37,22 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         logger.info("Visiting Program Expression");
         int cc = ctx.getChildCount();
 
-        return visit(ctx.getChild(0));
-        /*
-        for(int i = 2;i < cc;i++){
-            logger.info("Visiting Program Child Expression ");
-        }
-        return new ProgramExpression(Collections.<expr>emptyList(),ctx.getStart());
-        */
+
+        Object ob = ctx.getChild(0);
+        expr o = (expr)visit(ctx.getChild(0));
+        ArrayList<expr> list = new ArrayList<>();
+            list.add(o);
+
+        return new ProgramExpression(list,ctx.getStart());
+
 
     }
 
+    @Override
+    public SenatorASTContainer visitPrints(SenatorParser.PrintsContext ctx){
+        logger.info("Printing out container");
+        return new PrintExpression(ctx.getChild(1).getText());
+    }
 
     @Override
     public SenatorASTContainer visitDisplayMyHouse(SenatorParser.DisplayMyHouseContext ctx){
@@ -68,7 +74,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
     @Override
     public SenatorASTContainer visitVar( SenatorParser.VarContext ctx) {
         logger.info("Visit for var eval : " + ctx.getText() + " => " + ctx.ID());
-        expr command = new DisplayHouseExpression(_senators);
+        expr command = new VarDecl(_senators);
         command.setContext(ctx.getStart());
         return command;
     }
@@ -83,6 +89,10 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
         return(command);
     }
 
+    @Override
+    public SenatorASTContainer visitFunctioncall(SenatorParser.FunctioncallContext ctx){
+        return new FunctionDef("I'm a function name " + ctx.getChild(1).getText());
+    }
     @Override
     public SenatorASTContainer visitForIndexNum(SenatorParser.ForIndexNumContext ctx){
 
@@ -131,6 +141,7 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
 
     @Override
     public SenatorASTContainer visitProgstmt(SenatorParser.ProgstmtContext ctx){
+        logger.info("Visiting program statement...");
         LinkedList<expr> commands = new LinkedList<>();
         for(int i = 0;i < ctx.getChildCount();i++){
             expr e = (expr)visit(ctx.getChild(i));
@@ -140,6 +151,11 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
             }
         }
         return new ProgramExpression(commands, ctx.getStart());
+    }
+    @Override
+    public SenatorASTContainer visitAssignvar(SenatorParser.AssignvarContext ctx){
+        logger.info("Visiting Assign var");
+        return new VarDecl(_senators);
     }
     @Override
     public SenatorASTContainer visitTopLevelRule( SenatorParser.TopLevelRuleContext ctx){
@@ -161,14 +177,11 @@ public class InitialParseVisitor extends SenatorBaseVisitor<SenatorASTContainer>
                 _senators.add(con.getSenator());
             }
             if(ctx.getChild(i) instanceof SenatorParser.ProgramexpressionContext){
-                logger.info("Class Name is " + ((SenatorParser.ProgramexpressionContext) ctx.getChild(i)).getClass().getName());
+
                 expr command = (expr) visit(ctx.getChild(i));
+                logger.info(String.format("I've added a command here...%d commands so far", _rootcommand.getCommands().size()));
                 _rootcommand.add(command);
             }
-        }
-
-        for(Senator s:_senators){
-            logger.info("[Senators_Print]> " + s);
         }
         return shiz;
     }

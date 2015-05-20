@@ -29,30 +29,6 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSenatordfn(@NotNull SenatorParser.SenatordfnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSenatordfn(@NotNull SenatorParser.SenatordfnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSenatorname(@NotNull SenatorParser.SenatornameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSenatorname(@NotNull SenatorParser.SenatornameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterProgramexpression(@NotNull SenatorParser.ProgramexpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -72,6 +48,30 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitProgstmt(@NotNull SenatorParser.ProgstmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSenatordfn(@NotNull SenatorParser.SenatordfnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSenatordfn(@NotNull SenatorParser.SenatordfnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIfstmt(@NotNull SenatorParser.IfstmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfstmt(@NotNull SenatorParser.IfstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -113,6 +113,30 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterReturnstatement(@NotNull SenatorParser.ReturnstatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnstatement(@NotNull SenatorParser.ReturnstatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConstant(@NotNull SenatorParser.ConstantContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstant(@NotNull SenatorParser.ConstantContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrinthouse(@NotNull SenatorParser.PrinthouseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -125,6 +149,54 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunction(@NotNull SenatorParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction(@NotNull SenatorParser.FunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionbody(@NotNull SenatorParser.FunctionbodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionbody(@NotNull SenatorParser.FunctionbodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionproto(@NotNull SenatorParser.FunctionprotoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionproto(@NotNull SenatorParser.FunctionprotoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionparam(@NotNull SenatorParser.FunctionparamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionparam(@NotNull SenatorParser.FunctionparamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDisplayMyHouse(@NotNull SenatorParser.DisplayMyHouseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -132,6 +204,42 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDisplayMyHouse(@NotNull SenatorParser.DisplayMyHouseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrints(@NotNull SenatorParser.PrintsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrints(@NotNull SenatorParser.PrintsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctioncall(@NotNull SenatorParser.FunctioncallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctioncall(@NotNull SenatorParser.FunctioncallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctioncallparam(@NotNull SenatorParser.FunctioncallparamContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctioncallparam(@NotNull SenatorParser.FunctioncallparamContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -173,6 +281,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSenatorname(@NotNull SenatorParser.SenatornameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSenatorname(@NotNull SenatorParser.SenatornameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVar(@NotNull SenatorParser.VarContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -204,6 +324,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLastname(@NotNull SenatorParser.LastnameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterType(@NotNull SenatorParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType(@NotNull SenatorParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

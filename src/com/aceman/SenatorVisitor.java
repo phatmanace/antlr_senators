@@ -19,18 +19,6 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTopLevelRule(@NotNull SenatorParser.TopLevelRuleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SenatorParser#senatordfn}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSenatordfn(@NotNull SenatorParser.SenatordfnContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SenatorParser#senatorname}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SenatorParser#programexpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -42,6 +30,18 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitProgstmt(@NotNull SenatorParser.ProgstmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#senatordfn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSenatordfn(@NotNull SenatorParser.SenatordfnContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#ifstmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfstmt(@NotNull SenatorParser.IfstmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SenatorParser#assignvar}.
 	 * @param ctx the parse tree
@@ -61,11 +61,47 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeletevar(@NotNull SenatorParser.DeletevarContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SenatorParser#returnstatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnstatement(@NotNull SenatorParser.ReturnstatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#constant}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstant(@NotNull SenatorParser.ConstantContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SenatorParser#printhouse}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPrinthouse(@NotNull SenatorParser.PrinthouseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(@NotNull SenatorParser.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#functionbody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionbody(@NotNull SenatorParser.FunctionbodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#functionproto}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionproto(@NotNull SenatorParser.FunctionprotoContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#functionparam}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionparam(@NotNull SenatorParser.FunctionparamContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code DisplayMyHouse}
 	 * labeled alternative in {@link SenatorParser#displayhouse}.
@@ -73,6 +109,24 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDisplayMyHouse(@NotNull SenatorParser.DisplayMyHouseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#prints}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrints(@NotNull SenatorParser.PrintsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#functioncall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctioncall(@NotNull SenatorParser.FunctioncallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#functioncallparam}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctioncallparam(@NotNull SenatorParser.FunctioncallparamContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SenatorParser#loop}.
 	 * @param ctx the parse tree
@@ -94,6 +148,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForIndexVar(@NotNull SenatorParser.ForIndexVarContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SenatorParser#senatorname}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSenatorname(@NotNull SenatorParser.SenatornameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SenatorParser#var}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -111,6 +171,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLastname(@NotNull SenatorParser.LastnameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType(@NotNull SenatorParser.TypeContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code DemocratRule}
 	 * labeled alternative in {@link SenatorParser#party}.

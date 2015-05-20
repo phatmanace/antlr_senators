@@ -2,6 +2,7 @@ package com.acemanstatic;
 
 import com.aceman.SenatorLexer;
 import com.aceman.SenatorParser;
+import com.acemanstatic.expressions.expr;
 import com.acemanstatic.visitors.VarListener;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -74,7 +75,8 @@ public class TestRig {
 
         Object returned = visitor.visit(tree);
         logger.info("Executing program");
-        logger.info(visitor.getProgram().exec(0).toString());
+        expr program = visitor.getProgram();
+        logger.info(program.exec(0).toString());
         logger.info("done: " + returned);
 
     }
