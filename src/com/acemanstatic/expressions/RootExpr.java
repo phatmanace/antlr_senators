@@ -18,6 +18,11 @@ public class RootExpr extends expr {
     }
 
     @Override
+    public ValidationResult validate(){
+        return new ValidationResult(Valid.OK);
+    }
+
+    @Override
     public Result exec(int depth) {
         logger.info(getCommands().toString());
 

@@ -10,10 +10,11 @@ import java.util.logging.Logger;
 /**
  * Created by phatmanace on 08/05/2015.
  */
-public class DisplayHouseExpression extends expr {
+public class DisplayHouseExpression extends ValidatingExpression {
     Logger logger = Logger.getLogger(DisplayHouseExpression.class.getName());
     List<Senator> _senators = new ArrayList<>();
     public DisplayHouseExpression(List<Senator> _senators){
+        super();
         this._senators = _senators;
 
     }

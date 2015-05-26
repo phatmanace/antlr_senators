@@ -3,13 +3,14 @@ package com.acemanstatic.expressions;
 /**
  * Created by phatmanace on 08/05/2015.
  */
-public class ConstantExpression extends expr {
+public class ConstantExpression extends ValidatingExpression {
 
     String val;
     Result result = new NoOpResult();
     private ExprType type = ExprType.INTEGER;
 
     public ConstantExpression(String val, ExprType _type){
+        super();
         this.val = val;
         this.type = _type;
         switch (_type){

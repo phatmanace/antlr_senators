@@ -32,6 +32,10 @@ public class ForExpression extends expr {
     }
 
     @Override
+    public ValidationResult validate(){
+        return new ValidationResult(Valid.OK);
+    }
+    @Override
     public String toString(){
         return String.format("_For Statement - %d commands", getCommands().size());
     }

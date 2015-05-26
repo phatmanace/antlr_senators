@@ -25,6 +25,11 @@ public class PrintExpression extends expr {
     }
 
     @Override
+    public ValidationResult validate(){
+        return new ValidationResult(Valid.OK);
+    }
+
+    @Override
     public String toString(){
         return "{Display_house_expression}";
     }

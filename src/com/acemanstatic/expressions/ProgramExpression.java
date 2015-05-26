@@ -10,6 +10,11 @@ import java.util.List;
 public class ProgramExpression extends expr {
 
 
+    @Override
+    public ValidationResult validate(){
+        return new ValidationResult(Valid.OK);
+    }
+
     public ProgramExpression(List<expr> commands, Token context
     ){
         addMany(commands);

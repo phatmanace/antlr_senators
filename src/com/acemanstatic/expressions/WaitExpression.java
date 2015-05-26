@@ -22,6 +22,11 @@ public class WaitExpression extends expr {
     }
 
     @Override
+    public ValidationResult validate(){
+        return new ValidationResult(Valid.OK);
+    }
+
+    @Override
     public String toString(){
         return "{Wait}";
     }

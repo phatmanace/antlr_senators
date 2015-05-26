@@ -58,6 +58,9 @@ public abstract  class expr extends SenatorASTContainer {
         this.commands.addAll(cmd);
     }
     public abstract Result exec(int depth);
+    public abstract ValidationResult validate();
+
+
 
     public List<expr> getCommands(){
         return commands;

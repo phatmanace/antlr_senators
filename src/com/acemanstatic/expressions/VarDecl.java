@@ -12,12 +12,35 @@ import java.util.logging.Logger;
  */
 public class VarDecl extends expr {
     Logger logger = Logger.getLogger(VarDecl.class.getName());
-    List<Senator> _senators = new ArrayList<>();
-    public VarDecl(List<Senator> _senators){
-        this._senators = _senators;
+
+    public String getVarName() {
+        return varName;
+    }
+
+    public void setVarName(String varName) {
+        this.varName = varName;
+    }
+
+    public VarExpression getVarVal() {
+        return varVal;
+    }
+
+    public void setVarVal(VarExpression varVal) {
+        this.varVal = varVal;
+    }
+
+    String varName = null;
+    VarExpression varVal = null;
+    public VarDecl(String name, String value){
+        this.varName = name;
+        this.varVal = new VarExpression(value);
 
     }
 
+    @Override
+    public ValidationResult validate(){
+        return new ValidationResult(Valid.OK);
+    }
     @Override
     public Result exec(int depth) {
         logger.info("Variable Declaration");
