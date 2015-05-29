@@ -12,6 +12,7 @@ progstmt: (
             |loop
             |swait
             |senatordfn
+            |loopexit
             |function
             |functioncall
             |ifstmt
@@ -21,9 +22,11 @@ progstmt: (
             ) WS?;
 
 senatordfn: '->("' senatorname WS? '('party')")';
-ifstmt: 'if(' WS? progstmt WS? TEST_OPERATOR WS? progstmt WS?'){' (WS? programexpression WS?) +'}';
+ifstmt: 'if(' WS? conditionaltest WS?'){' (WS? programexpression WS?) +'}';
+conditionaltest: progstmt WS? TEST_OPERATOR WS? progstmt;
 assignvar: '$'ID'="'(ID+|NUM+)'"';
 swait: '~wait(' NUM ')';
+loopexit: '~break';
 deletevar: '~delete' ID;
 returnstatement: 'return' ID;
 constant: (ID|NUM);

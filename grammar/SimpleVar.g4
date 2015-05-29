@@ -5,7 +5,7 @@ stmt : ((programexpression) WS?)+ #TopLevelRule;
 programexpression: progstmt ENDOFSTATEMENT;
 
 progstmt: (assignvar) WS?;
-assignvar: '$'ID'="'(ID+|NUM+)'"';
+assignvar: '$'ID '="' (ID+|NUM+)'"';
 
 
 ENDOFSTATEMENT: ';';
