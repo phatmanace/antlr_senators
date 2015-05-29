@@ -1,10 +1,5 @@
 package com.acemanstatic.expressions;
 
-import com.acemanstatic.PartyType;
-import com.acemanstatic.Senator;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -12,16 +7,32 @@ import java.util.logging.Logger;
  */
 public class PrintExpression extends expr {
     Logger logger = Logger.getLogger(PrintExpression.class.getName());
-    String text = "";
+    String displayText = "";
     public PrintExpression(String text){
-        this.text = text;
+        this.displayText = text;
     }
 
     @Override
     public Result exec(int depth) {
+        StringBuffer sb = new StringBuffer();
+        logAtDepth(depth, resolveScopeCtx().dump());
+        if(displayText.indexOf('$') == -1){
+            sb.append(displayText);
+        }else{
+            for(String chunk: displayText.split(" ")){
+                if(chunk.startsWith("$")) {
+                    String varName = chunk.replace("$", "");
+                    sb.append(resolveScopeCtx().resolve(varName).getVarVal().getStringValue());
+                }else {
+                    sb.append(chunk);
+                }
+                sb.append(" ");
+            }
 
-        logger.info(String.format("*********%s*********", text));
-        return new StringResult(String.format("*********%s*********", text));
+        }
+
+        logAtDepth(depth, String.format("%s", sb.toString()));
+        return new StringResult(String.format("*********%s*********", sb.toString()));
     }
 
     @Override
@@ -31,6 +42,6 @@ public class PrintExpression extends expr {
 
     @Override
     public String toString(){
-        return "{Display_house_expression}";
+        return "{Print_house_expression}";
     }
 }

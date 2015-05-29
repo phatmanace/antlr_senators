@@ -34,4 +34,8 @@ public class RootExpr extends expr {
 
         return new StringResult("Foo");
     }
+    @Override
+    public String toString(){
+        return "P-RT>";
+    }
 }

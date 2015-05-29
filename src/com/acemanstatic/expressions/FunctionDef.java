@@ -14,6 +14,10 @@ public class FunctionDef extends expr {
     String functionname = "";
     List<FunctionParam> params = new LinkedList<FunctionParam>();
 
+    public List<FunctionParam> getParams(){
+        return params;
+    }
+
     public List<expr> getStatements() {
         return statements;
     }
@@ -25,6 +29,7 @@ public class FunctionDef extends expr {
         this.statements = statements;
     }
     public void addStatement(expr statement){
+        statement.setParent(this);
         this.statements.add(statement);
     }
 
@@ -56,7 +61,10 @@ public class FunctionDef extends expr {
     @Override
     public Result exec(int depth) {
 
-        logger.info(String.format("Function Call: %s", functionname));
+        logger.info(String.format("Exec() => Function Call: %s", functionname));
+        for(expr stmt : statements){
+            stmt.exec(depth + 1);
+        }
         return new StringResult(String.format("Function Call : %s", functionname));
     }
 

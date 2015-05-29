@@ -43,6 +43,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfstmt(@NotNull SenatorParser.IfstmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SenatorParser#conditionaltest}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionaltest(@NotNull SenatorParser.ConditionaltestContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SenatorParser#assignvar}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -54,6 +60,12 @@ public interface SenatorVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSwait(@NotNull SenatorParser.SwaitContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SenatorParser#loopexit}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoopexit(@NotNull SenatorParser.LoopexitContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SenatorParser#deletevar}.
 	 * @param ctx the parse tree

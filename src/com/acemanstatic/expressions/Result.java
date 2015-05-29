@@ -8,6 +8,9 @@ public abstract class Result {
     public enum type{INTEGER,STRING};
     public type _type;
 
+    public boolean shouldBreak(){
+        return false;
+    }
 
     public type getType(){
         return _type;

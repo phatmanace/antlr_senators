@@ -77,6 +77,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConditionaltest(@NotNull SenatorParser.ConditionaltestContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConditionaltest(@NotNull SenatorParser.ConditionaltestContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAssignvar(@NotNull SenatorParser.AssignvarContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -96,6 +108,18 @@ public class SenatorBaseListener implements SenatorListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSwait(@NotNull SenatorParser.SwaitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLoopexit(@NotNull SenatorParser.LoopexitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLoopexit(@NotNull SenatorParser.LoopexitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

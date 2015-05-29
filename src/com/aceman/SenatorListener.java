@@ -61,6 +61,16 @@ public interface SenatorListener extends ParseTreeListener {
 	 */
 	void exitIfstmt(@NotNull SenatorParser.IfstmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SenatorParser#conditionaltest}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionaltest(@NotNull SenatorParser.ConditionaltestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SenatorParser#conditionaltest}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionaltest(@NotNull SenatorParser.ConditionaltestContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SenatorParser#assignvar}.
 	 * @param ctx the parse tree
 	 */
@@ -80,6 +90,16 @@ public interface SenatorListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSwait(@NotNull SenatorParser.SwaitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SenatorParser#loopexit}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoopexit(@NotNull SenatorParser.LoopexitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SenatorParser#loopexit}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoopexit(@NotNull SenatorParser.LoopexitContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SenatorParser#deletevar}.
 	 * @param ctx the parse tree

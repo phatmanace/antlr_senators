@@ -17,23 +17,28 @@ public class ProgramExpression extends expr {
 
     public ProgramExpression(List<expr> commands, Token context
     ){
-        addMany(commands);
+
+        for(expr command: commands){
+            command.setParent(this);
+            add(command);
+        }
         setContext(context);
 
     }
 
     @Override
     public Result exec(int depth) {
-        /*
-        logger.info("Exec'ing at depth " + depth);
-        logger.info(getCommands().toString());
-        */
+
+        Result res = new NoOpResult();
         List<expr> children = getCommands();
         for(expr c: children){
-            c.exec(depth + 1);
+           res =  c.exec(depth + 1);
+           if(res.shouldBreak()){
+               break;
+           }
         }
 
-        return new StringResult("Foo");
+        return res;
     }
     @Override
     public String toString(){

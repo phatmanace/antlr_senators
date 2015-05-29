@@ -10,11 +10,11 @@ public class StringDef extends SenatorASTContainer {
     public StringDef(String name){
         setString(name);
     }
-    @Override
+
     public void setString(String name){
         this.name = name;
     }
-    @Override
+
     public String getString(){
         return name;
     }

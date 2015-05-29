@@ -22,6 +22,7 @@ public class TestRig {
         Logger logger = Logger.getLogger(TestRig.class.getName());
 
         String filename = "/var/tmp/senator.txt";
+        filename = "/Users/phatmanace/IdeaProjects/antlr_senators/grammar/senator.txt";
 
         File file = new File(filename);
         FileInputStream fis = new FileInputStream(file);

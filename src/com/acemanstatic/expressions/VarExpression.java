@@ -9,6 +9,16 @@ public class VarExpression extends expr {
     ExprType _type = null;
     Result result = new NoOpResult();
 
+    public String getStringValue(){
+        return val;
+    }
+    public int getIntVal(){
+        return Integer.parseInt(val);
+    }
+
+    public ExprType getType(){
+        return _type;
+    }
     public VarExpression(String val, ExprType _type){
         this.val = val;
         switch (_type){
@@ -30,7 +40,7 @@ public class VarExpression extends expr {
             result = new IntResult(Integer.parseInt(val.toString()));
             _type = ExprType.INTEGER;
         }catch(Exception e){
-            result = new IntResult(Integer.parseInt(val.toString()));
+            result = new StringResult(val);
             _type = ExprType.STRING;
         }
     }

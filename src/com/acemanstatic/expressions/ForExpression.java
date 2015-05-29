@@ -22,13 +22,24 @@ public class ForExpression extends expr {
 
     @Override
     public Result exec(int depth) {
-        logger.info(String.format("For statement Executing(%d,%d)", start.getIntValue(), stop.getIntValue()));
-        for(int x = start.getIntValue(); x < stop.getIntValue() ;x++){
+        resolveScopeCtx().pushNewScope(String.format("for(%d)", hashCode()));
+        logAtDepth(depth, String.format("FR(%d,%d)", start.getIntValue(), stop.getIntValue()));
+        Result res = new NoOpResult();
+        // loop from the indexes we were given ... unless we get a break statement..
+        for(int x = start.getIntValue(); (x < stop.getIntValue() && !res.shouldBreak()) ;x++){
+            resolveScopeCtx().setVar(new VarDecl("_index", x, VarMod.PUBLIC));
+         //   logAtDepth(depth, resolveScopeCtx().dump());
             for(expr c:commands){
-                c.exec(depth);
+                res = c.exec(depth);
+                if(res.shouldBreak()){
+                    logAtDepth(depth, "Break baby Break");
+                    break;
+                }
             }
+
         }
-        return new NoOpResult();
+        resolveScopeCtx().pop();
+        return res;
     }
 
     @Override

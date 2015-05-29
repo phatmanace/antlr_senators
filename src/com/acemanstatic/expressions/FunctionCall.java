@@ -1,7 +1,6 @@
 package com.acemanstatic.expressions;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.logging.Logger;
 
 /**
@@ -9,18 +8,29 @@ import java.util.logging.Logger;
  */
 public class FunctionCall extends expr {
     Logger logger = Logger.getLogger(FunctionCall.class.getName());
-    String text = "";
+    String functionName = "";
     HashMap<String, FunctionDef> _functions = new HashMap<String, FunctionDef>();
     public FunctionCall(String text, HashMap<String, FunctionDef> _functionMap){
-        this.text = text;
+        this.functionName = text;
         this._functions = _functionMap;
     }
 
     @Override
     public Result exec(int depth) {
+        if(!_functions.containsKey(functionName)){
+            throw new RuntimeException(String.format("Function %s not defined", functionName));
+        }
+        resolveScopeCtx().pushNewScope("__functioncall");
+        FunctionDef def = _functions.get(functionName);
+        for(FunctionParam p: def.getParams()){
+            resolveScopeCtx().setVar(new VarDecl(p.paramName, "65"));
+        }
 
-        logger.info(String.format("Function Call: %s", text));
-        return new StringResult(String.format("Function Call : %s", text));
+        logAtDepth(depth, String.format("Function Call: %s (%s)", functionName, resolveScopeCtx().dump()));
+        def.exec(depth + 1);
+
+
+        return new StringResult(String.format("Function Call : %s", functionName));
     }
 
     @Override
@@ -30,6 +40,6 @@ public class FunctionCall extends expr {
 
     @Override
     public String toString(){
-        return "{Display_house_expression}";
+        return String.format("{FC>%s}", functionName);
     }
 }

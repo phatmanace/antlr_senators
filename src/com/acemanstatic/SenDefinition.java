@@ -16,7 +16,7 @@ public class SenDefinition extends SenatorASTContainer {
         return lastname;
     }
 
-    @Override
+
     public PartyType getParty() {
         return party;
     }

@@ -12,6 +12,7 @@ import java.util.logging.Logger;
  */
 public class VarDecl extends expr {
     Logger logger = Logger.getLogger(VarDecl.class.getName());
+    public VarMod modifiers = VarMod.PUBLIC;
 
     public String getVarName() {
         return varName;
@@ -28,12 +29,28 @@ public class VarDecl extends expr {
     public void setVarVal(VarExpression varVal) {
         this.varVal = varVal;
     }
-
+    public VarMod getModifiers(){
+        return modifiers;
+    }
     String varName = null;
     VarExpression varVal = null;
     public VarDecl(String name, String value){
         this.varName = name;
         this.varVal = new VarExpression(value);
+
+    }
+
+    public VarDecl(String name, String value, VarMod modifiers){
+        this.modifiers = modifiers;
+        this.varName = name;
+        this.varVal = new VarExpression(value);
+
+    }
+
+    public VarDecl(String name, int value, VarMod modifiers){
+        this.modifiers = modifiers;
+        this.varName = name;
+        this.varVal = new VarExpression("" + value);
 
     }
 
@@ -43,12 +60,15 @@ public class VarDecl extends expr {
     }
     @Override
     public Result exec(int depth) {
-        logger.info("Variable Declaration");
+
+        resolveScopeCtx().setVar(this);
+      //  logger.info(String.format("Variable Declaration(%s=%s)", varName, varVal.getStringValue()));
+       // logger.info(resolveScopeCtx().dump());
         return new StringResult("VarDecl");
     }
 
     @Override
     public String toString(){
-        return "{Var Decl}";
+        return String.format("{Var Decl(%s=%s)}", getVarName(), getVarVal().getStringValue());
     }
 }

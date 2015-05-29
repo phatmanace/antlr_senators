@@ -5,20 +5,12 @@ package com.acemanstatic;
  */
 public class Party extends SenatorASTContainer{
 
+    private void setPartyType(PartyType party){
+
+    }
     public Party(PartyType party){
         setPartyType(party);
     }
 
-    @Override
-    public void setName(String firstname, String lastname) {
-
-    }
-
-
-
-    @Override
-    public void setParty(PartyType party) {
-
-    }
 
 }

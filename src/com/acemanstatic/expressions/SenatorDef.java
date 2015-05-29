@@ -2,7 +2,6 @@ package com.acemanstatic.expressions;
 
 import com.acemanstatic.ScopeTree;
 import com.acemanstatic.SenatorASTContainer;
-import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 
 import java.util.LinkedList;
@@ -12,20 +11,16 @@ import java.util.logging.Logger;
 /**
  * Created by phatmanace on 29/04/2015.
  */
-public abstract  class expr extends SenatorASTContainer {
+public abstract  class SenatorDef extends expr {
 
-    Logger logger = Logger.getLogger(expr.class.getName());
-    private expr _parent = null;
+    Logger logger = Logger.getLogger(SenatorDef.class.getName());
+    private SenatorDef _parent = null;
 
-    public boolean shouldBreak(){
-        return false;
-    }
-
-    public expr getParent() {
+    public SenatorDef getParent() {
         return _parent;
     }
 
-    public void setParent(expr _parent) {
+    public void setParent(SenatorDef _parent) {
         this._parent = _parent;
     }
 
@@ -45,7 +40,7 @@ public abstract  class expr extends SenatorASTContainer {
     }
 
     public ScopeTree resolveScopeCtx(){
-        expr e = this;
+        SenatorDef e = this;
         while(e.getScope() == null){
           e = e.getParent();
           if(e.getScope() != null){
@@ -74,16 +69,16 @@ public abstract  class expr extends SenatorASTContainer {
     public String command = null;
     private Token fromtoken = null;
 
-    public LinkedList<expr> commands = new LinkedList<>();
-    public expr(LinkedList<expr> commands, Token fromtoken){
+    public LinkedList<SenatorDef> commands = new LinkedList<>();
+    public SenatorDef(LinkedList<SenatorDef> commands, Token fromtoken){
         super();
         this.commands.addAll(commands);
         this.fromtoken = fromtoken;
     }
-    public expr(){
+    public SenatorDef(){
         super();
     }
-    public expr(String name, Token fromtoken){
+    public SenatorDef(String name, Token fromtoken){
         super();
         setCommand(name, fromtoken);
     }
@@ -94,7 +89,7 @@ public abstract  class expr extends SenatorASTContainer {
         this.command = command;
         this.fromtoken = fromtoken;
     }
-    public void add(expr cmd){
+    public void add(SenatorDef cmd){
         if(true || cmd.getCommands().size() > 0) {
             logger.info(String.format("Adding command [%s] to class", cmd.getClass().getName()));
             this.commands.add(cmd);
@@ -102,23 +97,10 @@ public abstract  class expr extends SenatorASTContainer {
             logger.warning("Pruning empty command... " + cmd.toString());
         }
     }
-    public void addMany(List<expr> cmds){
-        for(expr cmd:cmds){
-            if(cmd.getParent() == null){
-                cmd.setParent(this);
-                add(cmd);
-            }
-        }
 
-    }
     public abstract Result exec(int depth);
     public abstract ValidationResult validate();
 
-
-
-    public List<expr> getCommands(){
-        return commands;
-    }
 
     public static String repeat(String s, int n) {
         if(s == null) {
